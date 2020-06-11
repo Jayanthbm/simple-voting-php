@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jun 08, 2020 at 05:44 PM
+-- Generation Time: Jun 11, 2020 at 09:11 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.2.27
 
@@ -38,7 +38,7 @@ CREATE TABLE `users` (
   `country` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   `role` varchar(255) NOT NULL,
-  `status` varchar(255) NOT NULL
+  `status` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -46,8 +46,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `firstname`, `lastname`, `username`, `age`, `gender`, `country`, `password`, `role`, `status`) VALUES
-(3, 'admin', 'admin', 'admin', 23, 'male', 'india', '21232f297a57a5a743894a0e4a801fc3', 'admin', 'active'),
-(6, 'Jayanth', 'V', 'jayanth', 24, 'male', 'India', 'e10adc3949ba59abbe56e057f20f883e', 'voter', 'active');
+(3, 'admin', 'admin', 'admin', 23, 'male', 'india', '21232f297a57a5a743894a0e4a801fc3', 'admin', 1),
+(6, 'Jayanth', 'V', 'jayanth', 24, 'male', 'India', 'e10adc3949ba59abbe56e057f20f883e', 'voter', 1);
 
 -- --------------------------------------------------------
 
@@ -79,7 +79,8 @@ ALTER TABLE `users`
 -- Indexes for table `votings`
 --
 ALTER TABLE `votings`
-  ADD PRIMARY KEY (`votingId`);
+  ADD PRIMARY KEY (`votingId`),
+  ADD KEY `vote_votername` (`votername`);
 
 --
 -- AUTO_INCREMENT for dumped tables
