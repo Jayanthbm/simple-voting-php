@@ -10,16 +10,15 @@ $password =  mysqli_real_escape_string($conn, $_POST['password']);
 $md5_pass = md5($password);
 $age =  mysqli_real_escape_string($conn, $_POST['age']);
 $gender =  mysqli_real_escape_string($conn, $_POST['gender']);
-$country =  mysqli_real_escape_string($conn, $_POST['country']);
-$rank = $_POST['rank'] ?? 'voter';
+$rank = $_POST['rank'] ?? 1;
 
-if ($firstname && $lastname && $username && $password && $age && $gender && $country) { // Form Validation By Server
+if ($firstname && $lastname && $username && $password && $age && $gender) { // Form Validation By Server
   $sql = "SELECT username from users WHERE username = '$username'";
   $ur = mysqli_query($conn, $sql);
   if (mysqli_num_rows($ur) > 0) {
     echo "<div class='alert alert-warning alert-dismissible'><button type='button' class='close' data-dismiss='alert'>&times;</button>User Exist</div>";
   } else {
-    $is = "INSERT INTO users (firstname,lastname,username,age,gender,country,password,role,status)VALUES( '$firstname', '$lastname', '$username', 25, '$gender', '$country', '$md5_pass', '$rank', 1)";
+    $is = "INSERT INTO users (firstName,lastName,userName,ageRange,gender,password,role,status)VALUES( '$firstname', '$lastname', '$username', '$age', '$gender', '$md5_pass', '$rank', 1)";
     if (!mysqli_query($conn, $is)) {
       echo mysqli_error($conn);
       echo "<br/>";

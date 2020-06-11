@@ -5,11 +5,10 @@ $firstname = mysqli_real_escape_string($conn, $_POST['firstname']);
 $lastname = mysqli_real_escape_string($conn, $_POST['lastname']);
 $age =  mysqli_real_escape_string($conn, $_POST['age']);
 $gender =  mysqli_real_escape_string($conn, $_POST['gender']);
-$country =  mysqli_real_escape_string($conn, $_POST['country']);
 $name = $_SESSION['name'];
 
 //Update
-$uq = "UPDATE users SET firstname = '$firstname',lastname = '$lastname',age =$age,gender ='$gender',country ='$country' WHERE username= '$name'";
+$uq = "UPDATE users SET firstName = '$firstname',lastName = '$lastname',ageRange ='$age' ,gender ='$gender' WHERE username= '$name'";
 
 if (!mysqli_query($conn, $uq)) {
   echo $uq;

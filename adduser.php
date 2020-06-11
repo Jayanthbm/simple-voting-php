@@ -37,7 +37,11 @@ include "head.php";
           </div>
           <div class="form-group">
             <label for="age">Age:</label>
-            <input type="number" class="form-control" placeholder="Enter Age" id="age" name="age" required>
+            <select class="form-control" id="age" name="age" required>
+              <option value="18-25">18-25</option>
+              <option value="25-50">25-50</option>
+              <option value="Above 50">Above 50</option>
+            </select>
           </div>
           <div class="form-group">
             <label for="gender">Gender:</label>
@@ -47,14 +51,10 @@ include "head.php";
             </select>
           </div>
           <div class="form-group">
-            <label for="country">Country:</label>
-            <input type="text" class="form-control" placeholder="Enter country" id="country" name="country" required>
-          </div>
-          <div class="form-group">
             <label for="rank">Rank:</label>
             <select class="form-control" id="rank" name="rank" required>
-              <option value="voter">Voter</option>
-              <option value="admin">Admin</option>
+              <option value="1">Voter</option>
+              <option value="2">Admin</option>
             </select>
           </div>
           <input type="submit" name="submit" class="btn btn-primary" value="Add User" />
@@ -79,10 +79,10 @@ include "head.php";
         data: form.serialize(),
         success: function(data) {
           if (data === 'Successfully Registered') {
-            data = `<div class='alert alert-success alert-dismissible'><button type='button' class='close' data-dismiss='alert'>&times;</button>User Added Successfully</div>"`
+            data = `<div class='alert alert-success alert-dismissible'><button type='button' class='close' data-dismiss='alert'>&times;</button>User Added Successfully</div>`
           }
           $('#results').html(data);
-          $('#regform')[0].reset(); // Adding Elements to DOM
+          $('#adduser')[0].reset(); // Adding Elements to DOM
         }
       });
     })

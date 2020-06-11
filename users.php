@@ -27,7 +27,8 @@ include "head.php";
                 <th>First Name</th>
                 <th>Last Name</th>
                 <th>User Name</th>
-                <th>Age</th>
+                <th>Age Range</th>
+                <th>Gender</th>
                 <th>Rank</th>
                 <th>Status</th>
               </tr>
@@ -35,11 +36,12 @@ include "head.php";
             <tbody>
               <?php
               while ($row = mysqli_fetch_array($uqr)) { //Loop
-                $id = $row['id'];
-                $firstname = $row['firstname'];
-                $lastname = $row['lastname'];
-                $username = $row['username'];
-                $age = $row['age'];
+                $id = $row['UserId'];
+                $firstname = $row['firstName'];
+                $lastname = $row['lastName'];
+                $username = $row['userName'];
+                $age = $row['ageRange'];
+                $gender = $row['gender'];
                 $rank = $row['role'];
                 $status = $row['status'];
               ?> <tr>
@@ -47,11 +49,12 @@ include "head.php";
                   <td><?php echo $lastname; ?></td>
                   <td><?php echo $username; ?></td>
                   <td><?php echo $age; ?></td>
-                  <td><?php echo $rank; ?></td>
+                  <td><?php echo $gender; ?></td>
+                  <td><?php if($rank == 1){echo "Voter";} if($rank == 2){echo "Admin";}?></td>
                   <td><?php if ($status == 1) {
                         echo "Active";
                       } else {
-                        echo "Not Actibe";
+                        echo "Not Active";
                       } ?></td>
                 </tr>
               <?php } ?>

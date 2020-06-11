@@ -7,7 +7,7 @@
 $server = "localhost";
 $username = "root";
 $password = "";
-$dbname = "voting";
+$dbname = "votings";
 
 $conn = mysqli_connect($server, $username, $password, $dbname)
   or die("error" . mysqli_error($conn));

@@ -4,7 +4,6 @@ include "head.php";
 <body onload="openmodal()">
   <div class="container">
     <?php include "navbar.php"; ?>
-
     <!-- Start Content For Non Logged Users -->
     <?php if (!$_SESSION) { //Condtional Statement
     ?> 
@@ -166,13 +165,14 @@ include "head.php";
         <div class="modal-body">
           <?php
           include 'connection.php';
+          $id = $_SESSION['UserId'];
           $name = $_SESSION['name'];
-          $vq = "SELECT vote_to from votings WHERE votername = '$name'";
+          $vq = "SELECT voteTo from votings WHERE voterName = '$name'";
           $vqr = mysqli_query($conn, $vq);
           if (mysqli_num_rows($vqr) == 1) {
           $row = mysqli_fetch_assoc($vqr); ?>
           <li class="list-group-item list-group-item-success">
-            <h5>You have voted for: <b><?php echo $row['vote_to']; ?></b></h5>
+            <h5>You have voted for: <b><?php echo $row['voteTo']; ?></b></h5>
           </li>
         <?php } else { ?>
           <li class="list-group-item list-group-item-danger">
@@ -181,6 +181,9 @@ include "head.php";
         <?php }
         ?>
         </div>
+        <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Ok</button>
+      </div>
       </div>
     </div>
 </div>

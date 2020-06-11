@@ -13,11 +13,10 @@ include "head.php";
         $uqr = mysqli_query($conn, $uq);
         if (mysqli_num_rows($uqr) > 0) {
           while ($row = mysqli_fetch_array($uqr)) {
-            $firstname = $row['firstname'];
-            $lastname = $row['lastname'];
-            $age = $row['age'];
+            $firstname = $row['firstName'];
+            $lastname = $row['lastName'];
+            $age = $row['ageRange'];
             $gender = $row['gender'];
-            $country = $row['country'];
           }
         }
     ?>
@@ -30,12 +29,12 @@ include "head.php";
         </ul>
         <br />
         <?php
-        $vq = "SELECT vote_to from votings WHERE votername = '$name'";
+        $vq = "SELECT voteTo from votings WHERE voterName = '$name'";
         $vqr = mysqli_query($conn, $vq);
         if (mysqli_num_rows($vqr) == 1) {
           $row = mysqli_fetch_assoc($vqr); ?>
           <li class="list-group-item list-group-item-success">
-            <h5>You have voted for: <b><?php echo $row['vote_to']; ?></b></h5>
+            <h5>You have voted for: <b><?php echo $row['voteTo']; ?></b></h5>
           </li>
         <?php } else { ?>
           <li class="list-group-item list-group-item-danger">
@@ -60,7 +59,17 @@ include "head.php";
           </div>
           <div class=" form-group">
             <label for="age"> Age :</label>
-            <input type="number" class="form-control" placeholder="Enter age" id="age" name="age" value="<?php echo $age; ?>" required>
+            <select class="form-control" id="age" name="age" required>
+              <option value="18-25" <?php if ($age == '18-25') {
+                                      echo "selected";
+                                    } ?>>18-25</option>
+              <option value="25-50" <?php if ($age == '25-50') {
+                                      echo "selected";
+                                    } ?>>25-50</option>
+              <option value="Above 50" <?php if ($age == 'Above 50') {
+                                      echo "selected";
+                                  } ?>>Above 50</option>
+            </select>
           </div>
           <div class=" form-group">
             <label for="gender">Gender:</label>
@@ -72,10 +81,6 @@ include "head.php";
                                       echo "selected";
                                     } ?>>Female</option>
             </select>
-          </div>
-          <div class="form-group">
-            <label for="country">Country:</label>
-            <input type="text" class="form-control" placeholder="Enter country" id="country" name="country" value="<?php echo $country; ?>" required>
           </div>
           <input type="submit" class="btn btn-success" name="update" value="Update">
         </form>

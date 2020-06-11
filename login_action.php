@@ -8,12 +8,21 @@ $md5_pass = md5($password);
 
 if ($username && $password) { // Form Validation By Server
   //Query to check
-  $lq = "SELECT * FROM users WHERE username ='$username' AND password = '$md5_pass' AND status='1'";
+  $lq = "SELECT * FROM users WHERE userName ='$username' AND password = '$md5_pass' AND status='1'";
   $lr = mysqli_query($conn, $lq);
   if (mysqli_num_rows($lr) == 1) {
     while ($row = mysqli_fetch_array($lr)) {
-      $uname = $row['username'];
-      $rank = $row['role'];
+      $userId = $row['UserId'];
+      $uname = $row['userName'];
+      $r = $row['role'];
+      if($r == 1){
+        $rank ="voter";
+      }
+      if($r == 2){
+        $rank ="admin";
+      }
+      //Setting Sessions
+      $_SESSION['UserId'] = $userId;
       $_SESSION['name'] = $uname;
       $_SESSION['rank'] = $rank;
     }

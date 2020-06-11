@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jun 11, 2020 at 09:11 AM
+-- Generation Time: Jun 11, 2020 at 11:46 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.2.27
 
@@ -19,8 +19,27 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `voting`
+-- Database: `votings`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `roles`
+--
+
+CREATE TABLE `roles` (
+  `roleId` int(11) NOT NULL,
+  `roleName` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `roles`
+--
+
+INSERT INTO `roles` (`roleId`, `roleName`) VALUES
+(2, 'admin'),
+(1, 'voter');
 
 -- --------------------------------------------------------
 
@@ -29,25 +48,26 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `users` (
-  `id` int(11) NOT NULL,
-  `firstname` varchar(255) NOT NULL,
-  `lastname` varchar(255) NOT NULL,
-  `username` varchar(255) NOT NULL,
-  `age` int(11) NOT NULL,
+  `UserId` int(11) NOT NULL,
+  `firstName` varchar(255) NOT NULL,
+  `lastName` varchar(255) NOT NULL,
+  `userName` varchar(255) NOT NULL,
+  `ageRange` varchar(255) NOT NULL,
   `gender` varchar(255) NOT NULL,
-  `country` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `role` varchar(255) NOT NULL,
-  `status` tinyint(1) NOT NULL
+  `role` int(11) NOT NULL,
+  `status` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `firstname`, `lastname`, `username`, `age`, `gender`, `country`, `password`, `role`, `status`) VALUES
-(3, 'admin', 'admin', 'admin', 23, 'male', 'india', '21232f297a57a5a743894a0e4a801fc3', 'admin', 1),
-(6, 'Jayanth', 'V', 'jayanth', 24, 'male', 'India', 'e10adc3949ba59abbe56e057f20f883e', 'voter', 1);
+INSERT INTO `users` (`UserId`, `firstName`, `lastName`, `userName`, `ageRange`, `gender`, `password`, `role`, `status`) VALUES
+(1, 'admin', 'admin', 'admin', '18-25', 'male', '21232f297a57a5a743894a0e4a801fc3', 2, 1),
+(3, 'jayanth', 'bharadwaj', 'jayanth', '18-25', 'male', 'e10adc3949ba59abbe56e057f20f883e', 1, 1),
+(4, 'test', 'user', 'test', '25-50', 'male', '827ccb0eea8a706c4c34a16891f84e7b', 1, 1),
+(5, 'abc', 'abc123', 'abc', '25-50', 'male', 'e99a18c428cb38d5f260853678922e03', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -57,56 +77,75 @@ INSERT INTO `users` (`id`, `firstname`, `lastname`, `username`, `age`, `gender`,
 
 CREATE TABLE `votings` (
   `votingId` int(11) NOT NULL,
-  `votername` varchar(255) NOT NULL,
-  `voter_gender` varchar(255) NOT NULL,
-  `vote_to` varchar(255) NOT NULL,
-  `voter_age` int(11) NOT NULL,
-  `voter_country` varchar(255) NOT NULL
+  `voterName` varchar(255) NOT NULL,
+  `voteTo` varchar(255) NOT NULL,
+  `votedOn` datetime NOT NULL DEFAULT current_timestamp(),
+  `voterGender` varchar(255) NOT NULL,
+  `voterAgeRange` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `votings`
+--
+
+INSERT INTO `votings` (`votingId`, `voterName`, `voteTo`, `votedOn`, `voterGender`, `voterAgeRange`) VALUES
+(1, 'jayanth', 'INDEPENDENT', '2020-06-11 15:02:40', 'male', '18-25');
 
 --
 -- Indexes for dumped tables
 --
 
 --
+-- Indexes for table `roles`
+--
+ALTER TABLE `roles`
+  ADD PRIMARY KEY (`roleId`),
+  ADD UNIQUE KEY `roleName` (`roleName`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `username` (`username`);
+  ADD PRIMARY KEY (`UserId`),
+  ADD KEY `user_role` (`role`);
 
 --
 -- Indexes for table `votings`
 --
 ALTER TABLE `votings`
-  ADD PRIMARY KEY (`votingId`),
-  ADD KEY `vote_votername` (`votername`);
+  ADD PRIMARY KEY (`votingId`);
 
 --
 -- AUTO_INCREMENT for dumped tables
 --
 
 --
+-- AUTO_INCREMENT for table `roles`
+--
+ALTER TABLE `roles`
+  MODIFY `roleId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `UserId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `votings`
 --
 ALTER TABLE `votings`
-  MODIFY `votingId` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `votingId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Constraints for dumped tables
 --
 
 --
--- Constraints for table `votings`
+-- Constraints for table `users`
 --
-ALTER TABLE `votings`
-  ADD CONSTRAINT `vote_votername` FOREIGN KEY (`votername`) REFERENCES `users` (`username`);
+ALTER TABLE `users`
+  ADD CONSTRAINT `user_role` FOREIGN KEY (`role`) REFERENCES `roles` (`roleId`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

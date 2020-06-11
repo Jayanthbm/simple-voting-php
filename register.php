@@ -38,14 +38,12 @@ include "head.php";
           <input type="password" class="form-control" placeholder="Enter Password" id="password" name="password" minlength="5" required>
         </div>
         <div class="form-group">
-          <label for="age">Age:</label>
-          <select class="form-control" id="age" name="age" required>
-            <?php
-            for ($i = 18; $i < 50; $i++) {
-              echo "<option value='" . $i . "'>" . $i . "</option>";
-            }
-            ?>
-          </select>
+           <label for="age"> Age :</label>
+            <select class="form-control" id="age" name="age" required>
+              <option value="18-25">18-25</option>
+              <option value="25-50">25-50</option>
+              <option value="Above 50">Above 50</option>
+            </select>
         </div>
         <div class="form-group">
           <label for="gender">Gender:</label>
@@ -53,10 +51,6 @@ include "head.php";
             <option value="male">Male</option>
             <option value="female">Female</option>
           </select>
-        </div>
-        <div class="form-group">
-          <label for="country">Country:</label>
-          <input type="text" class="form-control" placeholder="Enter country" id="country" name="country" required>
         </div>
         <div class="form-group">
           <div class="g-recaptcha" data-sitekey="6LeD3hEUAAAAAKne6ua3iVmspK3AdilgB6dcjST0"></div>

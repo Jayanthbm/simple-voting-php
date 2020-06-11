@@ -7,27 +7,27 @@ if (empty($_POST['lan'])) {
 }
 $lan = $_POST['lan'];
 $sess = $_SESSION['name'];
+$id =$_SESSION['UserId'];
 
 if ($lan && $sess) { // Form Validation By Server
   $lan = addslashes($_POST['lan']);
   $lan = mysqli_real_escape_string($conn, $lan);
   //Check Wheather he already made an Vote or Not
-  $sql = "SELECT * from votings WHERE votername = '$sess'";
+  $sql = "SELECT * from votings WHERE voterName = '$sess'";
   $vr = mysqli_query($conn, $sql);
   if (mysqli_num_rows($vr) == 1) {
     echo "<div class='alert alert-warning alert-dismissible'><button type='button' class='close' data-dismiss='alert'>&times;</button>You have already been voted, No need to vote again</div>";
   } else {
     //Get user data
-    $ud = "SELECT age ,gender,country from users WHERE username ='$sess'";
+    $ud = "SELECT ageRange ,gender from users WHERE UserId ='$id'";
     $ur = mysqli_query($conn, $ud);
     if (mysqli_num_rows($ur) > 0) {
       while ($row = mysqli_fetch_array($ur)) {
-        $u_age = $row['age'];
+        $u_age = $row['ageRange'];
         $u_gender = $row['gender'];
-        $u_country = $row['country'];
       }
     }
-    $viq = "INSERT INTO votings (votername,vote_to,voter_gender,voter_age,voter_country)VALUES('$sess','$lan','$u_gender','$u_age','$u_country')";
+    $viq = "INSERT INTO votings (voterName,voteTo,votedOn,voterGender,voterAgeRange)VALUES('$sess','$lan',current_timestamp(),'$u_gender','$u_age')";
     if (!mysqli_query($conn, $viq)) {
       echo "<div class='alert alert-danger alert-dismissible'><button type='button' class='close' data-dismiss='alert'>&times;</button>Error.</div>";
     } else {
