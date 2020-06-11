@@ -1,7 +1,7 @@
 <?php
 include "head.php";
 ?>
-<body onload="openmodal()"> //function will be called when page opens(used to open popup modal for voter) 
+<body onload="openmodal()"> <!--function will be called when page opens(used to open popup modal for voter) -->
   <div class="container">
     <?php include "navbar.php"; ?>
     <!-- Start Content For Non Logged Users -->
