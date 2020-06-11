@@ -27,6 +27,7 @@ include "head.php";
                 <th>First Name</th>
                 <th>Last Name</th>
                 <th>User Name</th>
+                <th>Age</th>
                 <th>Rank</th>
                 <th>Status</th>
               </tr>
@@ -38,12 +39,14 @@ include "head.php";
                 $firstname = $row['firstname'];
                 $lastname = $row['lastname'];
                 $username = $row['username'];
+                $age = $row['age'];
                 $rank = $row['role'];
                 $status = $row['status'];
               ?> <tr>
                   <td><?php echo $firstname; ?></td>
                   <td><?php echo $lastname; ?></td>
                   <td><?php echo $username; ?></td>
+                  <td><?php echo $age; ?></td>
                   <td><?php echo $rank; ?></td>
                   <td><?php if ($status == 1) {
                         echo "Active";
