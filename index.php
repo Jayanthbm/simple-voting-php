@@ -35,27 +35,22 @@ include "head.php";
         <form action="submit_vote.php" name="vote" method="post" id="voteform">
           <div class="form-check">
             <label class="form-check-label">
-              <input type="radio" class="form-check-input" id="radio1" name="lan" value="vis" checked>B
+              <input type="radio" class="form-check-input" id="radio1" name="lan" value="Pikachu" checked>Pikachu
             </label>
           </div>
           <div class="form-check">
             <label class="form-check-label">
-              <input type="radio" class="form-check-input" id="radio2" name="lan" value="C">C
+              <input type="radio" class="form-check-input" id="radio2" name="lan" value="Doremon">Doremon
             </label>
           </div>
           <div class="form-check">
             <label class="form-check-label">
-              <input type="radio" class="form-check-input" id="radio3" name="lan" value="A" checked>A
+              <input type="radio" class="form-check-input" id="radio3" name="lan" value="Charlizard" checked>Charlizard
             </label>
           </div>
           <div class="form-check">
             <label class="form-check-label">
-              <input type="radio" class="form-check-input" id="radio4" name="lan" value="NOTA">NOTA
-            </label>
-          </div>
-          <div class="form-check">
-            <label class="form-check-label">
-              <input type="radio" class="form-check-input" id="radio5" name="lan" value="INDEPENDENT">INDEPENDENT
+              <input type="radio" class="form-check-input" id="radio4" name="lan" value="Naruto">Naruto
             </label>
           </div>
           <br />

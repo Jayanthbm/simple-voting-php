@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jun 11, 2020 at 11:46 AM
+-- Generation Time: Jun 11, 2020 at 11:54 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.2.27
 
@@ -67,7 +67,8 @@ INSERT INTO `users` (`UserId`, `firstName`, `lastName`, `userName`, `ageRange`, 
 (1, 'admin', 'admin', 'admin', '18-25', 'male', '21232f297a57a5a743894a0e4a801fc3', 2, 1),
 (3, 'jayanth', 'bharadwaj', 'jayanth', '18-25', 'male', 'e10adc3949ba59abbe56e057f20f883e', 1, 1),
 (4, 'test', 'user', 'test', '25-50', 'male', '827ccb0eea8a706c4c34a16891f84e7b', 1, 1),
-(5, 'abc', 'abc123', 'abc', '25-50', 'male', 'e99a18c428cb38d5f260853678922e03', 1, 1);
+(5, 'abc', 'abc123', 'abc', '25-50', 'male', 'e99a18c428cb38d5f260853678922e03', 1, 1),
+(6, 'ajh', '33g', 'r4gtg', 'Above 50', 'female', 'd51ec1d5f448282f3e379f90b562d42e', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -83,13 +84,6 @@ CREATE TABLE `votings` (
   `voterGender` varchar(255) NOT NULL,
   `voterAgeRange` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `votings`
---
-
-INSERT INTO `votings` (`votingId`, `voterName`, `voteTo`, `votedOn`, `voterGender`, `voterAgeRange`) VALUES
-(1, 'jayanth', 'INDEPENDENT', '2020-06-11 15:02:40', 'male', '18-25');
 
 --
 -- Indexes for dumped tables
@@ -129,13 +123,13 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `UserId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `UserId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `votings`
 --
 ALTER TABLE `votings`
-  MODIFY `votingId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `votingId` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Constraints for dumped tables
