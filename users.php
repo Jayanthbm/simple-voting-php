@@ -56,6 +56,7 @@ include "head.php";
                       } else {
                         echo "Not Active";
                       } ?></td>
+                  <td><button class="btn btn-danger" onclick="deleteUser('<?php echo $id;?>')">Delete</button></td>
                 </tr>
               <?php } ?>
             </tbody>
@@ -72,4 +73,20 @@ include "head.php";
   <?php include "footer.php"; ?>
 
   <!---End Footer -->
+  <script>
+    function deleteUser(id){
+      let url = `delete_action.php?id=${id}`;
+      $.ajax({
+        type: "GET",
+        url: url,
+        success: function(data) {
+          if(data ==="<div class='alert alert-warning alert-dismissible'><button type='button' class='close' data-dismiss='alert'>&times;</button>You Can't delete Yourself</div>"){
+            $('#results').html(data);  // Adding Elements to DOM
+          }else{
+            location.reload();
+          }
+        }
+      });
+    }
+  </script>
 </body>

@@ -37,11 +37,16 @@
       <?php }
       } ?>
       <?php if ($_SESSION) {  //Condtional Statement
-        ?>
+      ?>
         <li class="nav-item">
           <a class="nav-link" href="logout.php">Logout</a>
         </li>
       <?php } ?>
+      <li class="nav-item">
+        <label class="switch">
+          <input type="checkbox" id="background"> <span class="slider round"></span>
+        </label>
+      </li>
     </ul>
   </nav>
   <h3 class="text-muted">Voting System</h3>
