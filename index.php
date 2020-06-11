@@ -1,7 +1,7 @@
 <?php
 include "head.php";
 ?>
-<body onload="openmodal()">
+<body onload="openmodal()"> //function will be called when page opens(used to open popup modal for voter) 
   <div class="container">
     <?php include "navbar.php"; ?>
     <!-- Start Content For Non Logged Users -->
@@ -128,7 +128,7 @@ include "head.php";
   </div>
   <script>
   function openmodal(){
-    $('#userModal').modal('show');
+    $('#userModal').modal('show'); // displays popup modal 
   }
     $('#voteform').submit(function(e) {
       $('#results').html('');
@@ -148,6 +148,7 @@ include "head.php";
 <?php if ($_SESSION) {
       if ($_SESSION['rank'] == 'voter') { //Condtional Statement
     ?>
+<!--Popup modal code start -->
 <div class="modal fade" id="userModal" tabindex="-1" role="dialog" aria-labelledby="userModal" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -181,7 +182,8 @@ include "head.php";
       </div>
       </div>
     </div>
+<!--Popup modal code end -->
 </div>
- <?php }
+<?php }
     } ?>
 </body>

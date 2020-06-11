@@ -41,7 +41,7 @@ include "head.php";
     <!---End Footer -->
     <script type="text/javascript">
       $('#updatepassword').submit(function(e) {
-        $('#results').html('');// Remove Elements to DOM
+        $('#results').html('');// Remove Elements from  DOM
         e.preventDefault();
         var form = $(this);
         var url = form.attr('action');

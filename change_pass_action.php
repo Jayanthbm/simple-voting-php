@@ -1,8 +1,9 @@
 <?php
-session_start();
+session_start(); // starting the session
 include "connection.php";
 
-$cpassword = $_POST['cpassword'];
+//get the data posted
+$cpassword = $_POST['cpassword'];  
 $npassword = $_POST['npassword'];
 $cnpassword = $_POST['cnpassword'];
 $name = $_SESSION['name'];

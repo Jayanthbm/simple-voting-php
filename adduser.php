@@ -17,7 +17,7 @@ include "head.php";
           </center>
         </ul>
         <br />
-        <div id="results"></div>
+        <div id="results"></div> // Used for display Server results
         <form action="reg_action.php" method="post" id="adduser">
           <div class="form-group">
             <label for="firstname"> Firstname :</label>
@@ -69,12 +69,12 @@ include "head.php";
   <!---End Footer -->
   <script type="text/javascript">
     $('#adduser').submit(function(e) {
-      $('#results').html('');// Remove Elements to DOM
-      e.preventDefault();
+      $('#results').html('');// Remove Elements from DOM
+      e.preventDefault(); // Prevents Default action (i.e Prevents Opening reg_action.php page)
       var form = $(this);
-      var url = form.attr('action');
+      var url = form.attr('action'); // get the url from form
       $.ajax({
-        type: "POST",
+        type: "POST", // type of request 
         url: url,
         data: form.serialize(),
         success: function(data) {

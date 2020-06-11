@@ -30,7 +30,6 @@ include "head.php";
                 <th>Age Range</th>
                 <th>Gender</th>
                 <th>Rank</th>
-                <th>Status</th>
               </tr>
             </thead>
             <tbody>
@@ -43,19 +42,12 @@ include "head.php";
                 $age = $row['ageRange'];
                 $gender = $row['gender'];
                 $rank = $row['role'];
-                $status = $row['status'];
               ?> <tr>
                   <td><?php echo $firstname; ?></td>
                   <td><?php echo $lastname; ?></td>
                   <td><?php echo $username; ?></td>
                   <td><?php echo $age; ?></td>
                   <td><?php echo $gender; ?></td>
-                  <td><?php if($rank == 1){echo "Voter";} if($rank == 2){echo "Admin";}?></td>
-                  <td><?php if ($status == 1) {
-                        echo "Active";
-                      } else {
-                        echo "Not Active";
-                      } ?></td>
                   <td><button class="btn btn-danger" onclick="deleteUser('<?php echo $id;?>')">Delete</button></td>
                 </tr>
               <?php } ?>

@@ -18,7 +18,7 @@ if ($firstname && $lastname && $username && $password && $age && $gender) { // F
   if (mysqli_num_rows($ur) > 0) {
     echo "<div class='alert alert-warning alert-dismissible'><button type='button' class='close' data-dismiss='alert'>&times;</button>User Exist</div>";
   } else {
-    $is = "INSERT INTO users (firstName,lastName,userName,ageRange,gender,password,role,status)VALUES( '$firstname', '$lastname', '$username', '$age', '$gender', '$md5_pass', '$rank', 1)";
+    $is = "INSERT INTO users (firstName,lastName,userName,ageRange,gender,password,role)VALUES( '$firstname', '$lastname', '$username', '$age', '$gender', '$md5_pass', '$rank')";
     if (!mysqli_query($conn, $is)) {
       echo mysqli_error($conn);
       echo "<br/>";

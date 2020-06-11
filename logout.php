@@ -1,4 +1,4 @@
 <?php
 session_start();
-session_destroy();
-header("Location: index.php");
+session_destroy(); //clear all sessions
+header("Location: index.php"); //redirect to index page
