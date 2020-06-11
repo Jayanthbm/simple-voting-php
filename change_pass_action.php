@@ -6,11 +6,11 @@ $cpassword = $_POST['cpassword'];
 $npassword = $_POST['npassword'];
 $cnpassword = $_POST['cnpassword'];
 $name = $_SESSION['name'];
-if ($cpassword && $npassword && $cnpassword) {
+if ($cpassword && $npassword && $cnpassword) { // Form Validation By Server
   $md5_cpassword = md5($cpassword);
   $md5_npassword = md5($npassword);
   $md5_cnpassword = md5($cnpassword);
-  if ($npassword == $cnpassword) {
+  if ($npassword == $cnpassword) { //Condtional Statement
     $pc = "SELECT * from users WHERE username = '$name' AND password = '$md5_cpassword'";
     $pcr = mysqli_query($conn, $pc);
     if (mysqli_num_rows($pcr) > 0) {

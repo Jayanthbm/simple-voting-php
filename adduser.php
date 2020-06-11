@@ -69,7 +69,7 @@ include "head.php";
   <!---End Footer -->
   <script type="text/javascript">
     $('#adduser').submit(function(e) {
-      $('#results').html('');
+      $('#results').html('');// Remove Elements to DOM
       e.preventDefault();
       var form = $(this);
       var url = form.attr('action');
@@ -82,7 +82,7 @@ include "head.php";
             data = `<div class='alert alert-success alert-dismissible'><button type='button' class='close' data-dismiss='alert'>&times;</button>User Added Successfully</div>"`
           }
           $('#results').html(data);
-          $('#regform')[0].reset();
+          $('#regform')[0].reset(); // Adding Elements to DOM
         }
       });
     })

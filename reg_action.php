@@ -13,7 +13,7 @@ $gender =  mysqli_real_escape_string($conn, $_POST['gender']);
 $country =  mysqli_real_escape_string($conn, $_POST['country']);
 $rank = $_POST['rank'] ?? 'voter';
 
-if ($firstname && $lastname && $username && $password && $age && $gender && $country) {
+if ($firstname && $lastname && $username && $password && $age && $gender && $country) { // Form Validation By Server
   $sql = "SELECT username from users WHERE username = '$username'";
   $ur = mysqli_query($conn, $sql);
   if (mysqli_num_rows($ur) > 0) {

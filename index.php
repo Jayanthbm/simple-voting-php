@@ -1,13 +1,13 @@
 <?php
 include "head.php";
 ?>
-
-<body>
+<body onload="openmodal()">
   <div class="container">
     <?php include "navbar.php"; ?>
 
     <!-- Start Content For Non Logged Users -->
-    <?php if (!$_SESSION) { ?>
+    <?php if (!$_SESSION) { //Condtional Statement
+    ?> 
       <div class="jumbotron">
         <h1 class="display-3">Vote for your favorite POLITICAL PARTY</h1>
         <p class="lead">In order to make a vote you have to register first and then login.</p>
@@ -18,7 +18,7 @@ include "head.php";
 
     <!-- Start Content For Logged Users With role Voter -->
     <?php if ($_SESSION) {
-      if ($_SESSION['rank'] == 'voter') {
+      if ($_SESSION['rank'] == 'voter') { //Condtional Statement
     ?>
         <ul class="list-group">
           <center>
@@ -68,7 +68,7 @@ include "head.php";
 
     <!-- Start Content For Admin -->
     <?php if ($_SESSION) {
-      if ($_SESSION['rank'] == 'admin') {
+      if ($_SESSION['rank'] == 'admin') { //Condtional Statement
     ?>
         <ul class="list-group">
           <center>
@@ -133,6 +133,9 @@ include "head.php";
 
   </div>
   <script>
+  function openmodal(){
+    $('#userModal').modal('show');
+  }
     $('#voteform').submit(function(e) {
       $('#results').html('');
       e.preventDefault();
@@ -148,4 +151,39 @@ include "head.php";
       });
     })
   </script>
+<?php if ($_SESSION) {
+      if ($_SESSION['rank'] == 'voter') { //Condtional Statement
+    ?>
+<div class="modal fade" id="userModal" tabindex="-1" role="dialog" aria-labelledby="userModal" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="userModalLabel">Welcome <?php if ($_SESSION) { echo $_SESSION['name'];} ?></h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <?php
+          include 'connection.php';
+          $name = $_SESSION['name'];
+          $vq = "SELECT vote_to from votings WHERE votername = '$name'";
+          $vqr = mysqli_query($conn, $vq);
+          if (mysqli_num_rows($vqr) == 1) {
+          $row = mysqli_fetch_assoc($vqr); ?>
+          <li class="list-group-item list-group-item-success">
+            <h5>You have voted for: <b><?php echo $row['vote_to']; ?></b></h5>
+          </li>
+        <?php } else { ?>
+          <li class="list-group-item list-group-item-danger">
+            <h5>You have not voted yet. Please submit your vote!</h5>
+          </li>
+        <?php }
+        ?>
+        </div>
+      </div>
+    </div>
+</div>
+ <?php }
+    } ?>
 </body>

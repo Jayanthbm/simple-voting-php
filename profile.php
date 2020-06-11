@@ -30,7 +30,7 @@ include "head.php";
         </ul>
         <br />
         <?php
-        $vq = "SELECT vote_to from votings WHERE voter_name = '$name'";
+        $vq = "SELECT vote_to from votings WHERE votername = '$name'";
         $vqr = mysqli_query($conn, $vq);
         if (mysqli_num_rows($vqr) == 1) {
           $row = mysqli_fetch_assoc($vqr); ?>
@@ -90,7 +90,7 @@ include "head.php";
     <!---End Footer -->
     <script type="text/javascript">
       $('#updateuser').submit(function(e) {
-        $('#results').html('');
+        $('#results').html('');// Remove Elements to DOM
         e.preventDefault();
         var form = $(this);
         var url = form.attr('action');
@@ -99,7 +99,7 @@ include "head.php";
           url: url,
           data: form.serialize(),
           success: function(data) {
-            $('#results').html(data);
+            $('#results').html(data);// Adding Elements to DOM
           }
         });
       })

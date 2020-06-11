@@ -17,7 +17,7 @@ include "head.php";
         <?php
         $uq = "SELECT * FROM users";
         $uqr = mysqli_query($conn, $uq);
-        if (mysqli_num_rows($uqr) < 1) {
+        if (mysqli_num_rows($uqr) < 1) { //Condtional Statement
           echo '<font color="red">No Users found</font>';
         } else { ?>
           <div id="results"></div>
@@ -33,7 +33,7 @@ include "head.php";
             </thead>
             <tbody>
               <?php
-              while ($row = mysqli_fetch_array($uqr)) {
+              while ($row = mysqli_fetch_array($uqr)) { //Loop
                 $id = $row['id'];
                 $firstname = $row['firstname'];
                 $lastname = $row['lastname'];

@@ -72,7 +72,7 @@ include "head.php";
   <!---End Footer -->
   <script type="text/javascript">
     $('#regform').submit(function(e) {
-      $('#results').html('');
+      $('#results').html('');// Remove Elements to DOM
       e.preventDefault();
       var form = $(this);
       var url = form.attr('action');
@@ -84,7 +84,7 @@ include "head.php";
           if (data === 'Successfully Registered') {
             location.href = 'login.php';
           }
-          $('#results').html(data);
+          $('#results').html(data); // Adding Elements to DOM
           $('#regform')[0].reset();
         }
       });

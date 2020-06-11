@@ -8,12 +8,11 @@ if (empty($_POST['lan'])) {
 $lan = $_POST['lan'];
 $sess = $_SESSION['name'];
 
-if ($lan && $sess) {
+if ($lan && $sess) { // Form Validation By Server
   $lan = addslashes($_POST['lan']);
   $lan = mysqli_real_escape_string($conn, $lan);
-
   //Check Wheather he already made an Vote or Not
-  $sql = "SELECT * from votings WHERE voter_name = '$sess'";
+  $sql = "SELECT * from votings WHERE votername = '$sess'";
   $vr = mysqli_query($conn, $sql);
   if (mysqli_num_rows($vr) == 1) {
     echo "<div class='alert alert-warning alert-dismissible'><button type='button' class='close' data-dismiss='alert'>&times;</button>You have already been voted, No need to vote again</div>";
@@ -28,7 +27,7 @@ if ($lan && $sess) {
         $u_country = $row['country'];
       }
     }
-    $viq = "INSERT INTO votings (voter_name,vote_to,voter_gender,voter_age,voter_country)VALUES('$sess','$lan','$u_gender','$u_age','$u_country')";
+    $viq = "INSERT INTO votings (votername,vote_to,voter_gender,voter_age,voter_country)VALUES('$sess','$lan','$u_gender','$u_age','$u_country')";
     if (!mysqli_query($conn, $viq)) {
       echo "<div class='alert alert-danger alert-dismissible'><button type='button' class='close' data-dismiss='alert'>&times;</button>Error.</div>";
     } else {

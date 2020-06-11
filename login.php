@@ -18,15 +18,15 @@ include "head.php";
           </li>
         </center>
       </ul>
-      <div id="results"></div>
+      <div id="results"></div> <!-- Results from server -->
       <form action="login_action.php" method="post" id="loginform">
         <div class="form-group">
           <label for="username"> Username :</label>
-          <input type="text" class="form-control" placeholder="Enter Username" id="username" name="username" required>
+          <input type="text" class="form-control" placeholder="Enter Username" id="username" name="username">
         </div>
         <div class="form-group">
           <label for="password">Password:</label>
-          <input type="password" class="form-control" placeholder="Enter Password" id="password" name="password" required>
+          <input type="password" class="form-control" placeholder="Enter Password" id="password" name="password">
         </div>
         <input type="submit" class="btn btn-primary" name="login" value="login">
       </form>
@@ -39,7 +39,7 @@ include "head.php";
   <!---End Footer -->
   <script type="text/javascript">
     $('#loginform').submit(function(e) {
-      $('#results').html('');
+      $('#results').html('');// Remove Elements to DOM
       e.preventDefault();
       var form = $(this);
       var url = form.attr('action');
@@ -51,8 +51,10 @@ include "head.php";
           if (data === 'Login Successful') {
             location.href = 'index.php';
           }
-          $('#results').html(data);
-          $('#loginform')[0].reset();
+          if(data === `<div class='alert alert-danger alert-dismissible'><button type='button' class='close' data-dismiss='alert'>&times;</button>Invalid Username or Password</div>`){
+            document.getElementById("loginform").reset();// Remove Elements to DOM
+          }
+          $('#results').html(data);// Adding Elements to DOM
         }
       });
     })
