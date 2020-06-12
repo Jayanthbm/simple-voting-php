@@ -1,13 +1,13 @@
 <?php
-include "head.php";
+include "head.php"; //include head.php file
 ?>
 
 <body>
   <div class="container">
-    <?php include "navbar.php"; ?>
+    <?php include "navbar.php"; ?> <!-- Include navbar.php -->
     <!-- Start Content For Admin -->
     <?php if ($_SESSION) {
-      if ($_SESSION['rank'] == 'admin') {
+      if ($_SESSION['rank'] == 'admin') { // Check wheather the user is admin or not if admin show content 
     ?>
         <ul class="list-group">
           <center>
@@ -17,7 +17,7 @@ include "head.php";
           </center>
         </ul>
         <br />
-        <div id="results"></div> // Used for display Server results
+        <div id="results"></div> <!--  Used for display Server results -->
         <form action="reg_action.php" method="post" id="adduser">
           <div class="form-group">
             <label for="firstname"> Firstname :</label>
@@ -68,21 +68,22 @@ include "head.php";
 
   <!---End Footer -->
   <script type="text/javascript">
-    $('#adduser').submit(function(e) {
+    $('#adduser').submit(function(e) { //Function will trigger on form submit
       $('#results').html('');// Remove Elements from DOM
       e.preventDefault(); // Prevents Default action (i.e Prevents Opening reg_action.php page)
-      var form = $(this);
+      var form = $(this); 
       var url = form.attr('action'); // get the url from form
+      //ajax request
       $.ajax({
         type: "POST", // type of request 
         url: url,
-        data: form.serialize(),
-        success: function(data) {
+        data: form.serialize(),  // creates a URL encoded text string by serializing form values.
+        success: function(data) { 
           if (data === 'Successfully Registered') {
             data = `<div class='alert alert-success alert-dismissible'><button type='button' class='close' data-dismiss='alert'>&times;</button>User Added Successfully</div>`
           }
-          $('#results').html(data);
-          $('#adduser')[0].reset(); // Adding Elements to DOM
+          $('#results').html(data); // Adding Elements to DOM
+          $('#adduser')[0].reset(); // reset the form
         }
       });
     })

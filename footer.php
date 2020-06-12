@@ -2,6 +2,12 @@
 function setBackground(){
   var bgcolor = localStorage.getItem("bgcolor"); // get the background color from localstorage
   document.body.style.backgroundColor = bgcolor; // update the backgrgound color
+  if(bgcolor === 'white'){
+    document.body.style.color = 'black'; // update text color
+  }
+  if(bgcolor === 'black'){
+    document.body.style.color = 'aqua'; // update text color
+  }
 }
 $(document).ready(function() { // Checking wheather document ready or not
   var bgcolor = localStorage.getItem("bgcolor"); // checking local storage for background color
@@ -31,6 +37,6 @@ $(document).ready(function() { // Checking wheather document ready or not
 </script>
 <footer class="footer">
   <center>
-    <p>&copy; <?php echo Date('Y'); ?></p>
+    <p>&copy; <?php echo Date('Y'); ?></p> <!-- Display year -->
   </center>
 </footer> 

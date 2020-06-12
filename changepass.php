@@ -1,11 +1,11 @@
 <?php
-include "head.php";
+include "head.php"; // include head.php
 ?>
 
 <body>
   <div class="container">
-    <?php include "navbar.php"; ?>
-    <?php if ($_SESSION) { ?>
+    <?php include "navbar.php"; ?> <!-- Include navbar.php -->
+    <?php if ($_SESSION) {  ?><!-- check user logged in or not -->
       <ul class="list-group">
         <center>
           <li class="list-group-item list-group-item-info">
@@ -36,25 +36,26 @@ include "head.php";
     } ?>
     <!---Start Footer -->
 
-    <?php include "footer.php"; ?>
+    <?php include "footer.php"; ?><!-- Include foooter .php -->
 
     <!---End Footer -->
     <script type="text/javascript">
-      $('#updatepassword').submit(function(e) {
+      $('#updatepassword').submit(function(e) { //Function will trigger on form submit
         $('#results').html('');// Remove Elements from  DOM
-        e.preventDefault();
+        e.preventDefault();  // Prevents Default action (i.e Prevents Opening reg_action.php page)
         var form = $(this);
-        var url = form.attr('action');
+        var url = form.attr('action'); // get the url from form
+      //ajax request
         $.ajax({
-          type: "POST",
+          type: "POST",// type of request 
           url: url,
-          data: form.serialize(),
+          data: form.serialize(), // creates a URL encoded text string by serializing form values.
           success: function(data) {
             if (data === 'Successfully Registered') {
-              location.href = 'login.php';
+              location.href = 'login.php'; // redirect user to login.php
             }
             $('#results').html(data); // Adding Elements to DOM
-            $('#updatepassword')[0].reset();
+            $('#updatepassword')[0].reset(); // reset the form
           }
         });
       })

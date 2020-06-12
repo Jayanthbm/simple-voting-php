@@ -5,7 +5,7 @@
 // $dbname = "OqgiWVS2Nf";
 
 $server = "localhost";
-$username = "root";
+$username = "root"; 
 $password = "";
 $dbname = "votings";
 

@@ -10,7 +10,7 @@ $password =  mysqli_real_escape_string($conn, $_POST['password']);
 $md5_pass = md5($password);
 $age =  mysqli_real_escape_string($conn, $_POST['age']);
 $gender =  mysqli_real_escape_string($conn, $_POST['gender']);
-$rank = $_POST['rank'] ?? 1;
+$rank = $_POST['rank'] ?? 1; // Null coalescing if $rank is null then set to 1(i.e Voter) 
 
 if ($firstname && $lastname && $username && $password && $age && $gender) { // Form Validation By Server
   $sql = "SELECT username from users WHERE username = '$username'";
